@@ -48,7 +48,7 @@ export default function App() {
         <div className="conteudo-inferior">
           <ul className="letras">
             {letras.map((letra) => (
-              <li>{letra}</li>
+              <li className="letra">{letra}</li>
             ))}
           </ul>
           <div className="grupo-input">

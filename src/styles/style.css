@@ -1,3 +1,103 @@
-.teste {
-  color: aqua;
+* {
+  box-sizing: border-box;
+}
+
+.conteudo {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.conteudo-superior {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forca {
+}
+
+.botao-escolher-palavra {
+  background-color: rgb(14, 151, 83);
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  border: none;
+  margin-top: 42px;
+}
+
+.botao-escolher-palavra:hover {
+  cursor: pointer;
+  background-color: rgb(17, 180, 99);
+}
+
+.conteudo-inferior {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.letras {
+  width: 800px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.letra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(202, 202, 202);
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.letra:hover {
+  cursor: pointer;
+}
+
+.grupo-input {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 550px;
+}
+
+.grupo-input p {
+  font-size: 22px;
+}
+
+.grupo-input input {
+  width: 260px;
+  height: 35px;
+  border-radius: 8px;
+}
+
+.grupo-input button {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(41, 85, 70);
+  background-color: rgba(161, 243, 216, 0.664);
+  border-width: 1px;
+  border-color: rgb(41, 85, 70);
+  border-radius: 6px;
+  height: 40px;
+}
+
+.grupo-input button:hover {
+  cursor: pointer;
+  background-color: rgb(161, 243, 216);
 }
