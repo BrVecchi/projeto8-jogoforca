@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Comfortaa", cursive;
 }
 
 .conteudo {
@@ -7,15 +8,20 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 
 .conteudo-superior {
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
 }
 
 .forca {
+  width: 35%;
+}
+.forca img {
+  width: 100%;
 }
 
 .botao-escolher-palavra {
@@ -52,11 +58,12 @@
   flex-wrap: wrap;
 }
 
-.letra {
+.letra-desab {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(202, 202, 202);
+  color: rgb(75, 75, 75);
   border-radius: 8px;
   font-size: 20px;
   padding: 10px;
@@ -65,8 +72,26 @@
   height: 40px;
 }
 
-.letra:hover {
+.letra-hab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(194, 249, 253);
+  color: rgb(14, 98, 104);
+  border-color: rgb(14, 98, 104);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.letra-hab:hover {
   cursor: pointer;
+  background-color: rgb(134, 196, 201);
 }
 
 .grupo-input {
@@ -78,12 +103,25 @@
 
 .grupo-input p {
   font-size: 22px;
+  font-family: "Comfortaa", cursive;
 }
 
-.grupo-input input {
+.input-desab {
   width: 260px;
   height: 35px;
   border-radius: 8px;
+  border-color: grey;
+  border-width: 1px;
+  pointer-events: none;
+  outline: none;
+  text-indent: -9999px;
+}
+
+.input-hab {
+  width: 260px;
+  height: 35px;
+  border-radius: 8px;
+  font-family: "Comfortaa", cursive;
 }
 
 .grupo-input button {
