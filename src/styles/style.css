@@ -30,7 +30,7 @@
   width: 100%;
 }
 
-.botao-escolher-palavra {
+.botao-sortear-palavra {
   background-color: rgb(14, 151, 83);
   color: white;
   font-size: 20px;
@@ -42,7 +42,7 @@
   margin-top: 42px;
 }
 
-.botao-escolher-palavra:hover {
+.botao-sortear-palavra:hover {
   cursor: pointer;
   background-color: rgb(17, 180, 99);
 }
@@ -51,6 +51,18 @@
   font-size: 28px;
   font-family: "Comfortaa", cursive;
   letter-spacing: 8px;
+}
+.acertou {
+  font-size: 28px;
+  font-family: "Comfortaa", cursive;
+  letter-spacing: 8px;
+  color: green;
+}
+.errou {
+  font-size: 28px;
+  font-family: "Comfortaa", cursive;
+  letter-spacing: 8px;
+  color: red;
 }
 
 .conteudo-inferior {
@@ -82,6 +94,7 @@
   margin: 10px;
   width: 40px;
   height: 40px;
+  pointer-events: none;
 }
 
 .letra-hab {

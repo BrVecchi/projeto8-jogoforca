@@ -55,14 +55,17 @@ export default function App() {
   const [inputStyle, setInputStyle] = useState("input-desab");
   const [palavraSorteada, setPalavraSorteada] = useState([]);
   const [letrasEscolhidas, setLetrasEscolhidas] = useState([]);
-  console.log(letrasEscolhidas);
-  console.log(palavraSorteada);
+  const [corPalavra, setCorPalavra] = useState("tracos");
+  const [finalizado, setFinalizado] = useState("nao");
 
-  function habilitarFuncionalidades() {
+  function iniciarJogo() {
     sortearPalavra();
     setLetrasEscolhidas([]);
+    setErros(0);
     setLetraStyle("letra-hab");
     setInputStyle("input-hab");
+    setCorPalavra("tracos");
+    setFinalizado("nao");
   }
 
   function sortearPalavra() {
@@ -76,21 +79,35 @@ export default function App() {
   }
 
   function escolherLetra(letra) {
-    const novaArray = [];
+    const novaArray = [...letrasEscolhidas];
     if (!letrasEscolhidas.includes(letra)) {
       novaArray.push(letra);
     }
-    const arrayFinal = [...letrasEscolhidas, ...novaArray];
-    setLetrasEscolhidas(arrayFinal);
+    setLetrasEscolhidas(novaArray);
+    let novoErro = erros;
     if (!palavraSorteada.includes(letra)) {
-      setErros(erros + 1);
+      novoErro++;
+      setErros(novoErro);
     }
-    if (erros === 6) {
-      finalizarJogo();
-    }
+    finalizarJogo(novaArray, novoErro);
   }
 
-  function finalizarJogo() {}
+  function finalizarJogo(novaArray, novoErro) {
+    const letrasUnicas = palavraSorteada.filter(
+      (letra, i) => palavraSorteada.indexOf(letra) === i
+    );
+    if (novoErro === 6) {
+      setCorPalavra("errou");
+      setLetraStyle("letra-desab");
+      setInputStyle("input-desab");
+      setFinalizado("sim");
+    } else if (letrasUnicas.length === novaArray.length - novoErro) {
+      setCorPalavra("acertou");
+      setLetraStyle("letra-desab");
+      setInputStyle("input-desab");
+      setFinalizado("sim");
+    }
+  }
 
   return (
     <>
@@ -100,15 +117,12 @@ export default function App() {
             <img src={arrayImagens[erros]} alt="imagem da forca" />
           </div>
           <div className="conteudo-superior-direito">
-            <button
-              className="botao-escolher-palavra"
-              onClick={habilitarFuncionalidades}
-            >
-              Escolher Palavra
+            <button className="botao-sortear-palavra" onClick={iniciarJogo}>
+              Sortear Palavra
             </button>
-            <div className="tracos">
+            <div className={corPalavra}>
               {palavraSorteada.map((letra) =>
-                letrasEscolhidas.includes(letra)
+                letrasEscolhidas.includes(letra) || finalizado === "sim"
                   ? (letra = letra)
                   : (letra = "_")
               )}
