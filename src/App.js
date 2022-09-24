@@ -80,8 +80,17 @@ export default function App() {
     if (!letrasEscolhidas.includes(letra)) {
       novaArray.push(letra);
     }
-    setLetrasEscolhidas([...letrasEscolhidas, ...novaArray]);
+    const arrayFinal = [...letrasEscolhidas, ...novaArray];
+    setLetrasEscolhidas(arrayFinal);
+    if (!palavraSorteada.includes(letra)) {
+      setErros(erros + 1);
+    }
+    if (erros === 6) {
+      finalizarJogo();
+    }
   }
+
+  function finalizarJogo() {}
 
   return (
     <>
