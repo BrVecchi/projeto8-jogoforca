@@ -4,7 +4,7 @@
 }
 
 .conteudo {
-  padding: 50px;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -14,6 +14,12 @@
 .conteudo-superior {
   width: 80%;
   display: flex;
+  justify-content: space-between;
+}
+
+.conteudo-superior-direito {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -39,6 +45,12 @@
 .botao-escolher-palavra:hover {
   cursor: pointer;
   background-color: rgb(17, 180, 99);
+}
+
+.tracos {
+  font-size: 28px;
+  font-family: "Comfortaa", cursive;
+  letter-spacing: 8px;
 }
 
 .conteudo-inferior {
