@@ -108,11 +108,20 @@ export default function App() {
         </div>
         <div className="conteudo-inferior">
           <ul className="letras">
-            {letras.map((letra) => (
-              <li className={letraStyle} onClick={() => escolherLetra(letra)}>
-                {letra}
-              </li>
-            ))}
+            {letras.map((letra) =>
+              letrasEscolhidas.includes(letra) ? (
+                <li
+                  className={"letra-desab"}
+                  onClick={() => escolherLetra(letra)}
+                >
+                  {letra}
+                </li>
+              ) : (
+                <li className={letraStyle} onClick={() => escolherLetra(letra)}>
+                  {letra}
+                </li>
+              )
+            )}
           </ul>
           <div className="grupo-input">
             <p>Já sei a palavra!</p>
