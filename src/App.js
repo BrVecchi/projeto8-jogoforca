@@ -60,6 +60,7 @@ export default function App() {
 
   function habilitarFuncionalidades() {
     sortearPalavra();
+    setLetrasEscolhidas([]);
     setLetraStyle("letra-hab");
     setInputStyle("input-hab");
   }
