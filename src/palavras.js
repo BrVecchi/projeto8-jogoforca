@@ -1,7 +1,13 @@
 const palavras = [
   "abacate",
-  "abacaxi",
-  "abelha",
+  "zumbido",
+  "abelha"
+];
+
+export default palavras;
+
+/*"abacaxi",
+  
   "abanador",
   "antologia",
   "amor",
@@ -228,8 +234,4 @@ const palavras = [
   "zangão",
   "zepelim",
   "zinco",
-  "zoológico",
-  "zumbido",
-];
-
-export default palavras;
+  "zoológico",*/

@@ -57,7 +57,10 @@ export default function App() {
   const [letrasEscolhidas, setLetrasEscolhidas] = useState([]);
   const [corPalavra, setCorPalavra] = useState("tracos");
   const [finalizado, setFinalizado] = useState("nao");
-
+  const [textoChute, setTextoChute] = useState("")
+  const [palavraAleatoria, setPalavraAleatoria] = useState("")
+  console.log(palavraAleatoria)
+  console.log(textoChute)
   function iniciarJogo() {
     sortearPalavra();
     setLetrasEscolhidas([]);
@@ -69,11 +72,11 @@ export default function App() {
   }
 
   function sortearPalavra() {
-    const palavraAleatoria =
-      palavras[Math.floor(Math.random() * palavras.length)];
+    const palavraAleat = palavras[Math.floor(Math.random() * palavras.length)]
+    setPalavraAleatoria(palavraAleat)
     const palavraArray = [];
-    for (let i = 0; i < palavraAleatoria.length; i++) {
-      palavraArray.push(palavraAleatoria[i]);
+    for (let i = 0; i < palavraAleat.length; i++) {
+      palavraArray.push(palavraAleat[i]);
     }
     setPalavraSorteada(palavraArray);
   }
@@ -107,6 +110,21 @@ export default function App() {
       setInputStyle("input-desab");
       setFinalizado("sim");
     }
+  }
+
+  function chutar() {
+    if (textoChute === palavraAleatoria) {
+      setCorPalavra("acertou");
+      setLetraStyle("letra-desab");
+      setInputStyle("input-desab");
+      setFinalizado("sim");
+    } else {
+      setCorPalavra("errou");
+      setLetraStyle("letra-desab");
+      setInputStyle("input-desab");
+      setFinalizado("sim");
+    }
+    setTextoChute("")
   }
 
   return (
@@ -153,9 +171,10 @@ export default function App() {
           </ul>
           <div className="grupo-input">
             <p>Já sei a palavra!</p>
-            <input className={inputStyle}></input>
-            <button>Chutar</button>
+            <input className={inputStyle} onChange={(event)=> setTextoChute(()=>event.target.value.toUpperCase())} value={textoChute}></input>
+            <button onClick={chutar}>Chutar</button>
           </div>
+          <p className="aviso">*Cuidado! Ao chutar o jogo terminará!*</p>
         </div>
       </div>
     </>

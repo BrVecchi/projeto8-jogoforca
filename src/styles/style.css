@@ -164,3 +164,9 @@
   cursor: pointer;
   background-color: rgb(161, 243, 216);
 }
+
+.aviso {
+  font-family: "Comfortaa", cursive;
+  color: brown;
+  font-size: 10px;
+}
