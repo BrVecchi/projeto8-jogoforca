@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const ResetCSS = createGlobalStyle`
 html,
 body,
 div,
@@ -122,3 +125,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+`
+
+export default ResetCSS

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import styled from 'styled-components';
+import GlobalStyle from "./GlobalStyle";
+import ResetCSS from "./ResetCSS";
 
 import forca from "./assets/forca0.png";
 import cabeca from "./assets/forca1.png";
@@ -59,8 +62,7 @@ export default function App() {
   const [finalizado, setFinalizado] = useState("nao");
   const [textoChute, setTextoChute] = useState("")
   const [palavraAleatoria, setPalavraAleatoria] = useState("")
-  console.log(palavraAleatoria)
-  console.log(textoChute)
+
   function iniciarJogo() {
     sortearPalavra();
     setLetrasEscolhidas([]);
@@ -129,35 +131,36 @@ export default function App() {
 
   return (
     <>
-      <div className="conteudo">
-        <div className="conteudo-superior">
-          <div className="forca">
+      <Conteudo>
+        <ResetCSS />
+        <GlobalStyle />
+        <ConteudoSuperior>
+          <Forca>
             <img src={arrayImagens[erros]} alt="imagem da forca" />
-          </div>
-          <div className="conteudo-superior-direito">
-            <button className="botao-sortear-palavra" onClick={iniciarJogo}>
+          </Forca>
+          <ConteudoSuperiorDireito>
+            <button onClick={iniciarJogo}>
               Sortear Palavra
             </button>
             <div className={corPalavra}>
               {palavraSorteada.map((letra) =>
                 letrasEscolhidas.includes(letra) || finalizado === "sim"
-                  ? (letra = letra)
+                  ? (letra)
                   : (letra = "_")
               )}
             </div>
-          </div>
-        </div>
-        <div className="conteudo-inferior">
-          <ul className="letras">
+          </ConteudoSuperiorDireito>
+        </ConteudoSuperior>
+        <ConteudoInferior>
+          <Letras>
             {letras.map((letra, index) =>
               letrasEscolhidas.includes(letra) ? (
-                <li
+                <LetraDesab
                   key={index}
-                  className={"letra-desab"}
                   onClick={() => escolherLetra(letra)}
                 >
                   {letra}
-                </li>
+                </LetraDesab>
               ) : (
                 <li
                   key={index}
@@ -168,15 +171,130 @@ export default function App() {
                 </li>
               )
             )}
-          </ul>
-          <div className="grupo-input">
+          </Letras>
+          <GrupoInput>
             <p>Já sei a palavra!</p>
             <input className={inputStyle} onChange={(event)=> setTextoChute(()=>event.target.value.toUpperCase())} value={textoChute}></input>
             <button onClick={chutar}>Chutar</button>
-          </div>
-          <p className="aviso">*Cuidado! Ao chutar o jogo terminará!*</p>
-        </div>
-      </div>
+          </GrupoInput>
+          <Aviso >*Cuidado! Ao chutar o jogo terminará!*</Aviso>
+        </ConteudoInferior>
+      </Conteudo>
     </>
   );
 }
+
+const Conteudo = styled.div`
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+`
+const Forca = styled.div`
+  width: 35%;
+  img {
+    width: 100%;
+  }
+`
+const ConteudoSuperior = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+
+ 
+`
+const ConteudoSuperiorDireito = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  button {
+    background-color: rgb(14, 151, 83);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    margin-top: 42px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(17, 180, 99);
+    }
+  }
+`
+const ConteudoInferior = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+`
+const Letras = styled.ul`
+  width: 800px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+`
+const LetraDesab = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(202, 202, 202);
+  color: rgb(75, 75, 75);
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+`
+const LetraHab = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(194, 249, 253);
+  color: rgb(14, 98, 104);
+  border-color: rgb(14, 98, 104);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+` 
+const GrupoInput = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 550px;
+  p {
+    font-size: 22px;
+    font-family: "Comfortaa", cursive;
+  }
+  button {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(41, 85, 70);
+    background-color: rgba(161, 243, 216, 0.664);
+    border-width: 1px;
+    border-color: rgb(41, 85, 70);
+    border-radius: 6px;
+    height: 40px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(161, 243, 216);
+    }
+  }
+`
+const Aviso = styled.p`
+  font-family: "Comfortaa", cursive;
+  color: brown;
+  font-size: 10px;
+`

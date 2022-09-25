@@ -1,51 +1,4 @@
-* {
-  box-sizing: border-box;
-  font-family: "Comfortaa", cursive;
-}
 
-.conteudo {
-  padding: 80px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-}
-
-.conteudo-superior {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.conteudo-superior-direito {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.forca {
-  width: 35%;
-}
-.forca img {
-  width: 100%;
-}
-
-.botao-sortear-palavra {
-  background-color: rgb(14, 151, 83);
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  width: 200px;
-  height: 50px;
-  border-radius: 15px;
-  border: none;
-  margin-top: 42px;
-}
-
-.botao-sortear-palavra:hover {
-  cursor: pointer;
-  background-color: rgb(17, 180, 99);
-}
 
 .tracos {
   font-size: 28px;
@@ -63,38 +16,6 @@
   font-family: "Comfortaa", cursive;
   letter-spacing: 8px;
   color: red;
-}
-
-.conteudo-inferior {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.letras {
-  width: 800px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.letra-desab {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(202, 202, 202);
-  color: rgb(75, 75, 75);
-  border-radius: 8px;
-  font-size: 20px;
-  padding: 10px;
-  margin: 10px;
-  width: 40px;
-  height: 40px;
-  pointer-events: none;
 }
 
 .letra-hab {
@@ -119,18 +40,6 @@
   background-color: rgb(134, 196, 201);
 }
 
-.grupo-input {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 550px;
-}
-
-.grupo-input p {
-  font-size: 22px;
-  font-family: "Comfortaa", cursive;
-}
-
 .input-desab {
   width: 260px;
   height: 35px;
@@ -147,26 +56,4 @@
   height: 35px;
   border-radius: 8px;
   font-family: "Comfortaa", cursive;
-}
-
-.grupo-input button {
-  font-size: 16px;
-  font-weight: 700;
-  color: rgb(41, 85, 70);
-  background-color: rgba(161, 243, 216, 0.664);
-  border-width: 1px;
-  border-color: rgb(41, 85, 70);
-  border-radius: 6px;
-  height: 40px;
-}
-
-.grupo-input button:hover {
-  cursor: pointer;
-  background-color: rgb(161, 243, 216);
-}
-
-.aviso {
-  font-family: "Comfortaa", cursive;
-  color: brown;
-  font-size: 10px;
 }
