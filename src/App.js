@@ -177,17 +177,23 @@ export default function App() {
         <GlobalStyle />
         <ConteudoSuperior>
           <Forca>
-            <img src={arrayImagens[erros]} alt="imagem da forca" />
+            <img
+              data-identifier="game-image"
+              src={arrayImagens[erros]}
+              alt="imagem da forca"
+            />
           </Forca>
           <ConteudoSuperiorDireito>
-            <button onClick={iniciarJogo}>Sortear Palavra</button>
-            <CorPalavra cor={corPalavra}>
+            <button data-identifier="choose-word" onClick={iniciarJogo}>
+              Sortear Palavra
+            </button>
+            <Palavra data-identifier="word" cor={corPalavra}>
               {palavraSorteada.map((letra) =>
                 letrasEscolhidas.includes(letra) || finalizado === "sim"
                   ? letra
                   : (letra = "_")
               )}
-            </CorPalavra>
+            </Palavra>
           </ConteudoSuperiorDireito>
         </ConteudoSuperior>
         <ConteudoInferior>
@@ -195,6 +201,7 @@ export default function App() {
             {letras.map((letra, index) =>
               letrasEscolhidas.includes(letra) ? (
                 <Letra
+                  data-identifier="letter"
                   key={index}
                   onClick={() => escolherLetra(letra)}
                   cor={"rgb(75, 75, 75)"}
@@ -226,6 +233,7 @@ export default function App() {
           <GrupoInput>
             <p>Já sei a palavra!</p>
             <Input
+              data-identifier="type-guess"
               corBorda={inputStyle[0]}
               tamanhoBorda={inputStyle[1]}
               evento={inputStyle[2]}
@@ -236,7 +244,9 @@ export default function App() {
               }
               value={textoChute}
             ></Input>
-            <button onClick={chutar}>Chutar</button>
+            <button data-identifier="guess-button" onClick={chutar}>
+              Chutar
+            </button>
           </GrupoInput>
           <Aviso>*Cuidado! Ao chutar o jogo terminará!*</Aviso>
         </ConteudoInferior>
@@ -319,7 +329,7 @@ const Letra = styled.li`
     background-color: #86c4c9;
   }
 `;
-const CorPalavra = styled.div`
+const Palavra = styled.div`
   font-size: 28px;
   font-family: "Comfortaa", cursive;
   letter-spacing: 8px;
