@@ -150,6 +150,7 @@ export default function App() {
         "none",
       ]);
       setInputStyle(["grey", "1px", "none", "none", "-9999px"]);
+      setErros(6);
       setFinalizado("sim");
     }
     setTextoChute("");
