@@ -75,6 +75,8 @@ export default function App() {
   const [finalizado, setFinalizado] = useState("nao");
   const [textoChute, setTextoChute] = useState("");
   const [palavraAleatoria, setPalavraAleatoria] = useState("");
+  console.log(erros);
+  console.log(letrasEscolhidas);
 
   function iniciarJogo() {
     sortearPalavra();
@@ -98,12 +100,37 @@ export default function App() {
 
   function escolherLetra(letra) {
     const novaArray = [...letrasEscolhidas];
+    let novoErro = erros;
+
     if (!letrasEscolhidas.includes(letra)) {
       novaArray.push(letra);
     }
     setLetrasEscolhidas(novaArray);
-    let novoErro = erros;
-    if (!palavraSorteada.includes(letra)) {
+    if (letra === "C" && palavraSorteada.includes("Ç")) {
+      novaArray.push("Ç");
+    } else if (letra === "A" && palavraSorteada.includes("Á")) {
+      novaArray.push("Á");
+    } else if (letra === "A" && palavraSorteada.includes("À")) {
+      novaArray.push("À");
+    } else if (letra === "A" && palavraSorteada.includes("Ã")) {
+      novaArray.push("Ã");
+    } else if (letra === "A" && palavraSorteada.includes("Â")) {
+      novaArray.push("Â");
+    } else if (letra === "E" && palavraSorteada.includes("É")) {
+      novaArray.push("É");
+    } else if (letra === "E" && palavraSorteada.includes("Ê")) {
+      novaArray.push("Ê");
+    } else if (letra === "I" && palavraSorteada.includes("Í")) {
+      novaArray.push("Í");
+    } else if (letra === "O" && palavraSorteada.includes("Ó")) {
+      novaArray.push("Ó");
+    } else if (letra === "O" && palavraSorteada.includes("Ô")) {
+      novaArray.push("Ô");
+    } else if (letra === "O" && palavraSorteada.includes("Õ")) {
+      novaArray.push("Õ");
+    } else if (letra === "U" && palavraSorteada.includes("Ú")) {
+      novaArray.push("Ú");
+    } else if (!palavraSorteada.includes(letra)) {
       novoErro++;
       setErros(novoErro);
     }
