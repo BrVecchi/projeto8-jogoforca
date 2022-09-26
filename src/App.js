@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import GlobalStyle from "./GlobalStyle";
 import ResetCSS from "./ResetCSS";
 
@@ -54,28 +54,41 @@ export default function App() {
   const palavras = listaPalavras.map((palavra) => palavra.toUpperCase());
 
   const [erros, setErros] = useState(0);
-  const [letraStyle, setLetraStyle] = useState("letra-desab");
-  const [inputStyle, setInputStyle] = useState("input-desab");
+  const [letraStyle, setLetraStyle] = useState([
+    "rgb(75, 75, 75)",
+    "rgb(202, 202, 202)",
+    "none",
+    "none",
+    "unset",
+    "none",
+  ]);
+  const [inputStyle, setInputStyle] = useState([
+    "grey",
+    "1px",
+    "none",
+    "none",
+    "-9999px",
+  ]);
   const [palavraSorteada, setPalavraSorteada] = useState([]);
   const [letrasEscolhidas, setLetrasEscolhidas] = useState([]);
-  const [corPalavra, setCorPalavra] = useState("tracos");
+  const [corPalavra, setCorPalavra] = useState("black");
   const [finalizado, setFinalizado] = useState("nao");
-  const [textoChute, setTextoChute] = useState("")
-  const [palavraAleatoria, setPalavraAleatoria] = useState("")
+  const [textoChute, setTextoChute] = useState("");
+  const [palavraAleatoria, setPalavraAleatoria] = useState("");
 
   function iniciarJogo() {
     sortearPalavra();
     setLetrasEscolhidas([]);
     setErros(0);
-    setLetraStyle("letra-hab");
-    setInputStyle("input-hab");
-    setCorPalavra("tracos");
+    setLetraStyle(["#31858c", "#b1f9ff", "#31858c", "1px", "solid", "initial"]);
+    setInputStyle(["black", "2px", "initial", "initial", ""]);
+    setCorPalavra("black");
     setFinalizado("nao");
   }
 
   function sortearPalavra() {
-    const palavraAleat = palavras[Math.floor(Math.random() * palavras.length)]
-    setPalavraAleatoria(palavraAleat)
+    const palavraAleat = palavras[Math.floor(Math.random() * palavras.length)];
+    setPalavraAleatoria(palavraAleat);
     const palavraArray = [];
     for (let i = 0; i < palavraAleat.length; i++) {
       palavraArray.push(palavraAleat[i]);
@@ -102,31 +115,59 @@ export default function App() {
       (letra, i) => palavraSorteada.indexOf(letra) === i
     );
     if (novoErro === 6) {
-      setCorPalavra("errou");
-      setLetraStyle("letra-desab");
-      setInputStyle("input-desab");
+      setCorPalavra("red");
+      setLetraStyle([
+        "rgb(75, 75, 75)",
+        "rgb(202, 202, 202)",
+        "none",
+        "none",
+        "unset",
+        "none",
+      ]);
+      setInputStyle(["grey", "1px", "none", "none", "-9999px"]);
       setFinalizado("sim");
     } else if (letrasUnicas.length === novaArray.length - novoErro) {
-      setCorPalavra("acertou");
-      setLetraStyle("letra-desab");
-      setInputStyle("input-desab");
+      setCorPalavra("green");
+      setLetraStyle([
+        "rgb(75, 75, 75)",
+        "rgb(202, 202, 202)",
+        "none",
+        "none",
+        "unset",
+        "none",
+      ]);
+      setInputStyle(["grey", "1px", "none", "none", "-9999px"]);
       setFinalizado("sim");
     }
   }
 
   function chutar() {
     if (textoChute === palavraAleatoria) {
-      setCorPalavra("acertou");
-      setLetraStyle("letra-desab");
-      setInputStyle("input-desab");
+      setCorPalavra("green");
+      setLetraStyle([
+        "rgb(75, 75, 75)",
+        "rgb(202, 202, 202)",
+        "none",
+        "none",
+        "unset",
+        "none",
+      ]);
+      setInputStyle(["grey", "1px", "none", "none", "-9999px"]);
       setFinalizado("sim");
     } else {
-      setCorPalavra("errou");
-      setLetraStyle("letra-desab");
-      setInputStyle("input-desab");
+      setCorPalavra("red");
+      setLetraStyle([
+        "rgb(75, 75, 75)",
+        "rgb(202, 202, 202)",
+        "none",
+        "none",
+        "unset",
+        "none",
+      ]);
+      setInputStyle(["grey", "1px", "none", "none", "-9999px"]);
       setFinalizado("sim");
     }
-    setTextoChute("")
+    setTextoChute("");
   }
 
   return (
@@ -139,45 +180,65 @@ export default function App() {
             <img src={arrayImagens[erros]} alt="imagem da forca" />
           </Forca>
           <ConteudoSuperiorDireito>
-            <button onClick={iniciarJogo}>
-              Sortear Palavra
-            </button>
-            <div className={corPalavra}>
+            <button onClick={iniciarJogo}>Sortear Palavra</button>
+            <CorPalavra cor={corPalavra}>
               {palavraSorteada.map((letra) =>
                 letrasEscolhidas.includes(letra) || finalizado === "sim"
-                  ? (letra)
+                  ? letra
                   : (letra = "_")
               )}
-            </div>
+            </CorPalavra>
           </ConteudoSuperiorDireito>
         </ConteudoSuperior>
         <ConteudoInferior>
           <Letras>
             {letras.map((letra, index) =>
               letrasEscolhidas.includes(letra) ? (
-                <LetraDesab
+                <Letra
                   key={index}
                   onClick={() => escolherLetra(letra)}
+                  cor={"rgb(75, 75, 75)"}
+                  fundo={"rgb(202, 202, 202)"}
+                  borda={"black"}
+                  contorno={"1px"}
+                  estilo={"unset"}
+                  evento={"none"}
                 >
                   {letra}
-                </LetraDesab>
+                </Letra>
               ) : (
-                <li
+                <Letra
                   key={index}
                   className={letraStyle}
                   onClick={() => escolherLetra(letra)}
+                  cor={letraStyle[0]}
+                  fundo={letraStyle[1]}
+                  borda={letraStyle[2]}
+                  contorno={letraStyle[3]} //1px
+                  estilo={letraStyle[4]} //solid
+                  evento={letraStyle[5]} //initial
                 >
                   {letra}
-                </li>
+                </Letra>
               )
             )}
           </Letras>
           <GrupoInput>
             <p>Já sei a palavra!</p>
-            <input className={inputStyle} onChange={(event)=> setTextoChute(()=>event.target.value.toUpperCase())} value={textoChute}></input>
+            <Input
+              corBorda={inputStyle[0]}
+              tamanhoBorda={inputStyle[1]}
+              evento={inputStyle[2]}
+              outLine={inputStyle[3]}
+              indent={inputStyle[4]}
+              onChange={(event) =>
+                setTextoChute(() => event.target.value.toUpperCase())
+              }
+              value={textoChute}
+            ></Input>
             <button onClick={chutar}>Chutar</button>
           </GrupoInput>
-          <Aviso >*Cuidado! Ao chutar o jogo terminará!*</Aviso>
+          <Aviso>*Cuidado! Ao chutar o jogo terminará!*</Aviso>
         </ConteudoInferior>
       </Conteudo>
     </>
@@ -190,20 +251,18 @@ const Conteudo = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
-`
+`;
 const Forca = styled.div`
   width: 35%;
   img {
     width: 100%;
   }
-`
+`;
 const ConteudoSuperior = styled.div`
   width: 80%;
   display: flex;
   justify-content: space-between;
-
- 
-`
+`;
 const ConteudoSuperiorDireito = styled.div`
   display: flex;
   flex-direction: column;
@@ -223,7 +282,7 @@ const ConteudoSuperiorDireito = styled.div`
       background-color: rgb(17, 180, 99);
     }
   }
-`
+`;
 const ConteudoInferior = styled.div`
   width: 100%;
   display: flex;
@@ -231,44 +290,41 @@ const ConteudoInferior = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-top: 50px;
-`
+`;
 const Letras = styled.ul`
   width: 800px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-`
-const LetraDesab = styled.li`
+`;
+const Letra = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(202, 202, 202);
-  color: rgb(75, 75, 75);
   border-radius: 8px;
   font-size: 20px;
   padding: 10px;
   margin: 10px;
   width: 40px;
   height: 40px;
-  pointer-events: none;
-`
-const LetraHab = styled.li`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(194, 249, 253);
-  color: rgb(14, 98, 104);
-  border-color: rgb(14, 98, 104);
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 8px;
-  font-size: 20px;
-  padding: 10px;
-  margin: 10px;
-  width: 40px;
-  height: 40px;
-` 
+  pointer-events: ${(props) => props.evento};
+  background-color: ${(props) => props.fundo};
+  color: ${(props) => props.cor};
+  border-color: ${(props) => props.borda};
+  border-width: ${(props) => props.contorno};
+  border-style: ${(props) => props.estilo};
+  &:hover {
+    cursor: pointer;
+    background-color: #86c4c9;
+  }
+`;
+const CorPalavra = styled.div`
+  font-size: 28px;
+  font-family: "Comfortaa", cursive;
+  letter-spacing: 8px;
+  color: ${(props) => props.cor};
+`;
 const GrupoInput = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -292,9 +348,21 @@ const GrupoInput = styled.div`
       background-color: rgb(161, 243, 216);
     }
   }
-`
+`;
+const Input = styled.input`
+  width: 260px;
+  height: 35px;
+  border-radius: 8px;
+  font-family: "Comfortaa", cursive;
+  border-color: ${(props) => props.corBorda};
+  border-width: ${(props) => props.tamanhoBorda};
+  pointer-events: ${(props) => props.evento};
+  outline: ${(props) => props.outLine};
+  text-indent: ${(props) => props.indent};
+`;
+
 const Aviso = styled.p`
   font-family: "Comfortaa", cursive;
   color: brown;
   font-size: 10px;
-`
+`;
